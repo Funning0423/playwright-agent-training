@@ -267,51 +267,28 @@
             <p>Playwright 会在后台把你的每一步点击、输入、跳转都记录下来，自动生成代码。你不需要看懂这些代码——它们的作用是让 Agent 知道你做了什么。</p>
           </div>
 
-          <div class=”install-track reveal”>
-            <article class=”install-step”>
-              <span>Step 1</span>
-              <h3>打开终端</h3>
-              <p>macOS 用”终端”，Windows 用 PowerShell。</p>
-            </article>
-
-            <article class=”install-step”>
-              <span>Step 2</span>
-              <h3>运行录制命令</h3>
-              <p>把网址换成你实际要操作的后台地址。</p>
+          <div class=”reason-grid compact-grid reveal”>
+            <article class=”spotlight-card”>
+              <span>第一步</span>
+              <strong>启动录制器</strong>
+              <p>打开终端，运行下面的命令。把网址换成你实际要操作的后台地址。</p>
               <div class=”code-block compact”>
                 <div class=”code-toolbar”>
-                  <span>启动录制器</span>
+                  <span>终端命令</span>
                   <button type=”button” class=”copy-button” data-copy-target=”codegen-cmd”>复制</button>
                 </div>
                 <pre id=”codegen-cmd”><code>npx playwright codegen https://edu-admin.qlchat.com</code></pre>
               </div>
             </article>
-
-            <article class=”install-step”>
-              <span>Step 3</span>
-              <h3>像平时一样操作</h3>
-              <p>在弹出的浏览器窗口里，按你日常的工作流操作一遍，所有动作会被自动记录。</p>
+            <article class=”spotlight-card”>
+              <span>第二步</span>
+              <strong>按流程操作一遍</strong>
+              <p>Playwright 会自动打开浏览器。从登录页开始，像平时工作一样操作一遍，所有点击、输入、跳转都会被自动记录。不用管代码好不好看，录制的目的是记录事实。</p>
             </article>
-
-            <article class=”install-step”>
-              <span>Step 4</span>
-              <h3>复制生成的代码</h3>
-              <p>操作完成后，点录制面板上的”复制”按钮，把代码保存下来——后面交给 Agent 使用。</p>
-            </article>
-          </div>
-
-          <div class=”principle-strip light-principles reveal”>
-            <article>
-              <h3>从登录页开始录</h3>
-              <p>确保完整的登录流程也被记录下来，不要跳过。</p>
-            </article>
-            <article>
-              <h3>不用管代码好不好看</h3>
-              <p>录制的目的是记录事实，代码质量后面由 Agent 提升。</p>
-            </article>
-            <article>
-              <h3>录完先看一遍回放</h3>
-              <p>确认没有遗漏关键步骤，一次只录一个流程。</p>
+            <article class=”spotlight-card”>
+              <span>第三步</span>
+              <strong>复制生成的代码</strong>
+              <p>操作完成后，点录制面板上的”复制”按钮，把代码保存下来。录完建议回放一遍，确认没有遗漏关键步骤——这段代码后面要交给 Agent 使用。</p>
             </article>
           </div>
 
