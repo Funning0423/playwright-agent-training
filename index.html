@@ -267,9 +267,24 @@
             <p>Playwright 会在后台把你的每一步点击、输入、跳转都记录下来，自动生成代码。你不需要看懂这些代码——它们的作用是让 Agent 知道你做了什么。</p>
           </div>
 
-          <div class="video-stage reveal">
-            <div class="video-shell">
-              <video controls preload="metadata" poster="./assets/video-poster.svg">
+          <div class=”recording-howto reveal”>
+            <article class=”feature-card keynote-feature”>
+              <h3>怎么开始录制？</h3>
+              <p>打开终端（macOS 用”终端”，Windows 用 PowerShell），输入下面的命令。Playwright 会自动打开一个浏览器窗口并进入你指定的网址，同时弹出一个录制面板。你只需要像平时工作一样操作一遍，所有点击、输入、跳转都会被自动记录成代码。</p>
+              <div class=”code-block compact”>
+                <div class=”code-toolbar”>
+                  <span>启动录制器</span>
+                  <button type=”button” class=”copy-button” data-copy-target=”codegen-cmd”>复制</button>
+                </div>
+                <pre id=”codegen-cmd”><code>npx playwright codegen https://你要录制的网址.com</code></pre>
+              </div>
+              <p style=”margin-top: 12px; color: var(--color-muted-soft); font-size: 14px;”>把 <code>https://你要录制的网址.com</code> 换成你实际要操作的后台地址，比如 <code>https://edu-admin.qlchat.com</code>。录制完成后，点击录制面板上的”复制”按钮，把生成的代码保存下来——后面要交给 Agent 使用。</p>
+            </article>
+          </div>
+
+          <div class=”video-stage reveal”>
+            <div class=”video-shell”>
+              <video controls preload=”metadata” poster=”./assets/video-poster.svg”>
                 你的浏览器不支持视频播放。
               </video>
             </div>
