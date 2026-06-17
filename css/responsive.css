@@ -1,0 +1,143 @@
+@media (max-width: 1240px) {
+  .keynote-topbar {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-stage,
+  .two-column-showcase,
+  .prompt-layout,
+  .review-layout,
+  .delivery-grid,
+  .video-stage {
+    grid-template-columns: 1fr;
+  }
+
+  .install-track,
+  .reason-grid,
+  .skill-grid,
+  .principle-strip,
+  .platform-grid,
+  .test-grid,
+  .selector-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .selector-grid.three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .mistakes-grid,
+  .tips-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .keynote-shell {
+    padding: 14px;
+  }
+
+  .hero-stage,
+  .stage-section {
+    padding: 24px;
+  }
+
+  .hero-stage {
+    min-height: auto;
+  }
+
+  .hero-stage-copy h1 {
+    max-width: none;
+    font-size: clamp(3rem, 13vw, 4.8rem);
+  }
+
+  .stage-heading h2 {
+    max-width: none;
+    font-size: clamp(2.1rem, 10vw, 3.2rem);
+  }
+
+  .install-track,
+  .reason-grid,
+  .skill-grid,
+  .principle-strip,
+  .platform-grid,
+  .test-grid,
+  .selector-grid,
+  .hero-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-nav {
+    justify-content: flex-start;
+  }
+
+  .hero-nav a {
+    width: 100%;
+    text-align: center;
+  }
+
+  .selector-grid.three {
+    grid-template-columns: 1fr;
+  }
+
+  .mistakes-grid,
+  .tips-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .site-footer {
+    padding: 32px 24px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .final-cta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-actions,
+  .form-actions,
+  .status-actions,
+  .footer-actions,
+  .tab-list {
+    width: 100%;
+  }
+
+  .primary-button,
+  .ghost-button,
+  .copy-button,
+  .mini-button,
+  .status-actions button,
+  .tab-button {
+    width: 100%;
+  }
+
+  .video-shell video {
+    min-height: 260px;
+  }
+
+  .floating-tools {
+    left: 14px;
+    right: 14px;
+  }
+
+  .floating-button {
+    width: 100%;
+  }
+}

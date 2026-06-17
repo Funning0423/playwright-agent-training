@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>从录制到 Skill · Playwright × Agent 发布会教程</title>
+    <link rel="stylesheet" href="./css/variables.css" />
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/components.css" />
+    <link rel="stylesheet" href="./css/responsive.css" />
+    <script defer src="./js/app.browser.js"></script>
+  </head>
+  <body>
+    <div class="site-shell keynote-shell" id="top">
+      <header class="topbar keynote-topbar">
+        <a class="brand" href="#top" aria-label="回到教程首页">
+          <span class="brand-mark">PA</span>
+          <span class="brand-copy">
+            <strong>从录制到 Skill</strong>
+            <small>Playwright × Agent 自动化培训页</small>
+          </span>
+        </a>
+        <nav class="hero-nav" aria-label="主章节导航">
+          <a href="#why" data-nav-link>01 背景</a>
+          <a href="#prepare" data-nav-link>02 准备</a>
+          <a href="#install" data-nav-link>03 安装</a>
+          <a href="#recording" data-nav-link>04 录制</a>
+          <a href="#agent-build" data-nav-link>05 脚本化</a>
+          <a href="#skill-pack" data-nav-link>06 封装 Skill</a>
+          <a href="#runflow" data-nav-link>07 跑通流程</a>
+          <a href="#mistakes" data-nav-link>避坑指南</a>
+          <a href="#tips" data-nav-link>技巧 &amp; FAQ</a>
+        </nav>
+        <div class="topbar-progress" aria-label="培训完成进度">
+          <div class="progress-meta">
+            <span>进度</span>
+            <strong id="progress-text">0%</strong>
+          </div>
+          <div class="progress-track" aria-hidden="true">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+        </div>
+      </header>
+
+      <main class="keynote-content">
+        <section class="hero-stage training-section" id="cover" data-section="cover">
+          <div class="hero-stage-copy">
+            <p class="eyebrow">发布会式培训教程</p>
+            <h1>录下真实工作流，交给 Agent 写脚本，<br />最后封成 Skill。</h1>
+            <p class="hero-lead">
+              这套方法面向<strong>所有需要做重复性后台操作的同事</strong>，不需要你会写代码。你只需要：把平时手动做的操作录一遍，告诉 Agent 业务规则，剩下的工程化和封装交给它。最终成果是团队里任何人都能一句话调用的 Skill。
+            </p>
+            <div class="hero-actions">
+              <button class="primary-button" type="button" data-scroll-target="#why">开始讲解</button>
+              <button class="ghost-button" type="button" data-scroll-target="#recording">跳到实操视频</button>
+            </div>
+          </div>
+
+          <div class=”hero-stage-visual”>
+            <div class=”hero-signal-card”>
+              <span>核心思路</span>
+              <strong>你录操作 → Agent 写脚本 → 封成 Skill → 团队复用</strong>
+              <p>一次投入，长期受益。以后遇到同类需求，一句话就能调起自动化。</p>
+            </div>
+            <div class="hero-stage-flow">
+              <span><i class="flow-num">1</i>录工作流</span>
+              <i class="flow-arrow">&rarr;</i>
+              <span><i class="flow-num">2</i>补业务规则</span>
+              <i class="flow-arrow">&rarr;</i>
+              <span><i class="flow-num">3</i>交给 Agent 写脚本</span>
+              <i class="flow-arrow">&rarr;</i>
+              <span><i class="flow-num">4</i>封装 Skill</span>
+              <i class="flow-arrow">&rarr;</i>
+              <span><i class="flow-num">5</i>跑通复用</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="stage-section training-section" id="why" data-section="why">
+          <div class="stage-heading reveal">
+            <div class="section-badge">01</div>
+            <p class="eyebrow">01 · 背景与原理</p>
+            <h2>为什么要用这套方法？</h2>
+            <p>很多团队尝试自动化都卡在同一个地方：不是工具不行，而是没人能把”我平时怎么操作的”准确地传达给机器。这套方法的核心就是——先用录制工具把你的真实操作录下来，再让 Agent 在此基础上补充工程化逻辑。</p>
+          </div>
+
+          <div class="reason-grid compact-grid reveal">
+            <article class=”spotlight-card”>
+              <span>现在的困境</span>
+              <strong>说不清，做不完</strong>
+              <p>想自动化，但跟工程师描述需求时说不清流程细节、成功条件和异常情况，最后来回沟通效率极低。</p>
+            </article>
+            <article class=”spotlight-card”>
+              <span>这套方法怎么解决</span>
+              <strong>你录操作，Agent 写代码</strong>
+              <p>用 Playwright 把你平时的操作录下来——这就是最准确的需求文档。然后 Agent 在此基础上补充异常处理、参数化等工程逻辑。</p>
+            </article>
+            <article class=”spotlight-card”>
+              <span>最终效果</span>
+              <strong>一次录制，长期复用</strong>
+              <p>跑通后封成 Skill，以后团队里任何人都能用一句话触发，不需要重新录制或重新写脚本。</p>
+            </article>
+          </div>
+
+          <div class="principle-strip light-principles reveal">
+            <article>
+              <h3>录制 = 事实</h3>
+              <p>你录下来的每一步操作都是真实验证过的流程，Agent 不能随意修改这些步骤——比如把自动登录改成手动扫码。</p>
+            </article>
+            <article>
+              <h3>规则 = 人来补</h3>
+              <p>业务判断逻辑（比如”搜不到就停止””有重名就报错”）只有你最清楚，必须在 Prompt 里写明白，Agent 不会自己猜。</p>
+            </article>
+            <article>
+              <h3>Skill = 复用</h3>
+              <p>把跑通的脚本、Prompt 和说明打包成 Skill，团队其他人不需要懂技术，直接安装调用就行。</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="stage-section training-section" id="prepare" data-section="prepare">
+          <div class="stage-heading reveal">
+            <div class="section-badge">02</div>
+            <p class="eyebrow">02 · 开始前准备</p>
+            <h2>动手前，先准备两样东西。</h2>
+            <p>一是想清楚你要自动化的那个流程长什么样；二是装好需要的软件。两件事各花 10 分钟。</p>
+          </div>
+
+          <div class="two-column-showcase airy-showcase reveal">
+            <article class="glass-card feature-essay">
+              <h3>第一步：想清楚你的流程</h3>
+              <p>录制前先回答这 4 个问题。想清楚了再录，后面每一步都会顺很多。</p>
+              <div class="focus-points">
+                <div><strong>流程名称</strong><span>例如“直播老师权限同步”</span></div>
+                <div><strong>输入与输出</strong><span>老师姓名、结果日志、失败原因</span></div>
+                <div><strong>异常规则</strong><span>零结果停止，多结果校准</span></div>
+                <div><strong>禁止事项</strong><span>不能扫码兜底，不能默认第一条</span></div>
+              </div>
+            </article>
+
+            <div class="glass-card accent interactive-panel" data-switcher>
+              <div class="output-toolbar">
+                <div>
+                  <h3>第二步：安装需要的软件</h3>
+                  <p class="panel-lead">点击下方各项查看说明。大部分只需要一条命令。</p>
+                </div>
+              </div>
+              <div class="selector-grid" role="tablist" aria-label="工具与依赖">
+                <button type="button" class="selector-card is-active" data-switch-target="browser">浏览器</button>
+                <button type="button" class="selector-card" data-switch-target="node">Node.js</button>
+                <button type="button" class="selector-card" data-switch-target="playwright">Playwright</button>
+                <button type="button" class="selector-card" data-switch-target="editor">代码编辑器</button>
+                <button type="button" class="selector-card" data-switch-target="agent">智能体</button>
+                <button type="button" class="selector-card" data-switch-target="video">实操视频</button>
+              </div>
+              <div class="switch-panels">
+                <article class="switch-panel is-active" data-switch-panel="browser">
+                  <strong>浏览器</strong>
+                  <p>推荐 Chrome 或 Edge 最新版，录制时尽量贴近真实业务环境。</p>
+                </article>
+                <article class="switch-panel" data-switch-panel="node">
+                  <strong>Node.js</strong>
+                  <p>建议 20 LTS 或以上。初始化 Playwright、运行脚本都依赖它。</p>
+                </article>
+                <article class="switch-panel" data-switch-panel="playwright">
+                  <strong>Playwright</strong>
+                  <p>用于录制真实操作、生成基础代码、执行自动化脚本。</p>
+                </article>
+                <article class="switch-panel" data-switch-panel="editor">
+                  <strong>代码编辑器</strong>
+                  <p>VS Code、Cursor、Windsurf 都可以，重点是方便和 Agent 协作看代码。</p>
+                </article>
+                <article class="switch-panel" data-switch-panel="agent">
+                  <strong>智能体</strong>
+                  <p>至少准备一个可用智能体，用来接收 Prompt、生成脚本和安装 Skill。</p>
+                </article>
+                <article class="switch-panel" data-switch-panel="video">
+                  <strong>实操视频</strong>
+                  <p>准备一段你自己录的 Playwright 视频，培训时直接播放，比纯文字更直观。</p>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <div class="platform-grid compact-grid" style="margin-top: 32px;">
+            <article class="platform-card">
+              <span>macOS</span>
+              <p>Homebrew + Node LTS，最省心。</p>
+            </article>
+            <article class="platform-card">
+              <span>Windows</span>
+              <p>Windows 11 + PowerShell，按官方安装包走即可。</p>
+            </article>
+            <article class="platform-card">
+              <span>通用要求</span>
+              <p>准备可登录后台的测试账号和低风险样本数据。</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="stage-section training-section" id="install" data-section="install">
+          <div class="stage-heading reveal">
+            <div class="section-badge">03</div>
+            <p class="eyebrow">03 · 安装步骤</p>
+            <h2>跟着做，5 分钟装完。</h2>
+            <p>只装必要的东西，一步一步来。如果你已经装过 Node.js，可以直接跳到 Step 2。</p>
+          </div>
+
+          <div class="install-track reveal">
+            <article class="install-step">
+              <span>Step 1</span>
+              <h3>安装 Node.js</h3>
+              <p>macOS 用 Homebrew，Windows 用官方安装包。</p>
+              <div class="code-block compact">
+                <div class="code-toolbar">
+                  <span>macOS</span>
+                  <button type="button" class="copy-button" data-copy-target="install-node-mac">复制</button>
+                </div>
+                <pre id="install-node-mac"><code>brew install node</code></pre>
+              </div>
+              <div class="code-block compact">
+                <div class="code-toolbar">
+                  <span>Windows PowerShell</span>
+                  <button type="button" class="copy-button" data-copy-target="install-node-win">复制</button>
+                </div>
+                <pre id="install-node-win"><code>winget install OpenJS.NodeJS.LTS</code></pre>
+              </div>
+            </article>
+
+            <article class="install-step">
+              <span>Step 2</span>
+              <h3>初始化 Playwright</h3>
+              <div class="code-block compact">
+                <div class="code-toolbar">
+                  <span>初始化项目</span>
+                  <button type="button" class="copy-button" data-copy-target="install-playwright">复制</button>
+                </div>
+                <pre id="install-playwright"><code>npm init playwright@latest</code></pre>
+              </div>
+            </article>
+
+            <article class="install-step">
+              <span>Step 3</span>
+              <h3>安装浏览器驱动</h3>
+              <div class="code-block compact">
+                <div class="code-toolbar">
+                  <span>安装 Chromium</span>
+                  <button type="button" class="copy-button" data-copy-target="install-browser">复制</button>
+                </div>
+                <pre id="install-browser"><code>npx playwright install chromium</code></pre>
+              </div>
+            </article>
+
+            <article class="install-step">
+              <span>Step 4</span>
+              <h3>确认智能体可用</h3>
+              <p>确保你有一个能正常对话的智能体（OpenClaw、Hermes 或 Work Buddy 都行），后续要把 Prompt 和录制代码交给它处理。</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="stage-section featured-section training-section" id="recording" data-section="recording">
+          <div class="stage-heading reveal">
+            <div class="section-badge">04</div>
+            <p class=”eyebrow”>04 · 录制操作</p>
+            <h2>打开录制器，像平时一样操作就行。</h2>
+            <p>Playwright 会在后台把你的每一步点击、输入、跳转都记录下来，自动生成代码。你不需要看懂这些代码——它们的作用是让 Agent 知道你做了什么。</p>
+          </div>
+
+          <div class="video-stage reveal">
+            <div class="video-shell">
+              <video controls preload="metadata" poster="./assets/video-poster.svg">
+                你的浏览器不支持视频播放。
+              </video>
+            </div>
+            <aside class=”speaker-panel”>
+              <span>录制小贴士</span>
+              <ul class=”clean-list”>
+                <li><strong>从登录页开始录</strong>——确保完整的登录流程也被记录下来。</li>
+                <li><strong>不用管代码好不好看</strong>——录制的目的是记录事实，代码质量后面由 Agent 提升。</li>
+                <li><strong>录完先看一遍回放</strong>——确认没有遗漏关键步骤。</li>
+              </ul>
+              <p class=”helper-note”>把你的演示视频放到 `assets/` 目录下，左边的播放器就能直接播放。</p>
+            </aside>
+          </div>
+
+          <div class="tab-panel" data-tabs>
+            <div class="tab-list" role="tablist" aria-label="录制代码切换">
+              <button type="button" role="tab" aria-selected="true" class="tab-button" data-tab-target="recorded">录制结果</button>
+              <button type="button" role="tab" aria-selected="false" class="tab-button" data-tab-target="optimized">Agent 优化后</button>
+              <button type="button" role="tab" aria-selected="false" class="tab-button" data-tab-target="reason">讲解重点</button>
+            </div>
+            <div class="tab-content">
+              <section class="tab-pane is-active" role="tabpanel" data-tab-panel="recorded">
+                <div class="code-block">
+                  <div class="code-toolbar">
+                    <span>Playwright 原始录制</span>
+                    <button type="button" class="copy-button" data-copy-target="recorded-code">复制代码</button>
+                  </div>
+                  <pre id="recorded-code"><code>await page.goto('https://edu-admin.qlchat.com/login?...');
+await page.getByRole('img').click();
+await page.getByRole('button', { name: '同意协议（4s）' }).click();
+await page.goto('https://login.work.weixin.qq.com/...');
+await page.getByRole('link', { name: '继续在浏览器中登录访问' }).click();
+await page.goto('https://edu-admin.qlchat.com/teacherSetting/liveTeacher');
+await page.getByRole('textbox', { name: '用户昵称' }).fill('杨继昆');
+await page.getByRole('button', { name: '查询' }).click();
+await page.getByRole('button', { name: '修改' }).click();
+await page.getByRole('button', { name: '同步' }).click();</code></pre>
+                </div>
+              </section>
+              <section class="tab-pane" role="tabpanel" data-tab-panel="optimized">
+                <div class="code-block">
+                  <div class="code-toolbar">
+                    <span>Agent 工程化增强</span>
+                    <button type="button" class="copy-button" data-copy-target="optimized-code">复制代码</button>
+                  </div>
+                  <pre id="optimized-code"><code>const targetRows = page.getByRole('row').filter({ hasText: teacherName });
+const count = await targetRows.count();
+
+if (count === 0) {
+  throw new Error(`未找到老师：${teacherName}`);
+}
+
+if (count > 1) {
+  throw new Error(`存在多个同名结果，禁止默认选择第一条：${teacherName}`);
+}
+
+const targetRow = targetRows.first();
+await expect(targetRow).toContainText(teacherName);
+await targetRow.getByRole('button', { name: '修改' }).click();
+await page.getByRole('button', { name: '同步' }).click();</code></pre>
+                </div>
+              </section>
+              <section class=”tab-pane” role=”tabpanel” data-tab-panel=”reason”>
+                <article class=”explain-card keynote-explain”>
+                  <h3>两段代码的核心区别</h3>
+                  <ul class=”clean-list”>
+                    <li><strong>录制代码</strong>（左边）是你操作的原始记录，包括登录、点击、跳转——这些是不能改的流程事实。</li>
+                    <li><strong>Agent 优化后</strong>（右边）在此基础上增加了：参数化输入、搜索结果唯一性校验、异常时自动阻断、成功后验证提示。</li>
+                    <li><strong>底线</strong>：如果 Agent 把自动登录改成了手动扫码，或者默认选了第一条搜索结果——这不是”优化”，而是错误，需要在 Prompt 里明确禁止。</li>
+                  </ul>
+                </article>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <section class="stage-section training-section" id="agent-build" data-section="agent-build">
+          <div class="stage-heading reveal">
+            <div class="section-badge">05</div>
+            <p class="eyebrow">05 · 生成 Prompt 交给 Agent</p>
+            <h2>填好这张表，一键生成 Agent 能看懂的指令。</h2>
+            <p>你不需要会写 Prompt——下面的表单会帮你把业务信息组织成 Agent 需要的格式。填完点"生成"，把结果复制给 Agent 就行。信息越完整，Agent 给出的脚本越靠谱。</p>
+          </div>
+
+          <div class="prompt-layout">
+            <form class="prompt-form" id="prompt-form">
+              <label>
+                <span>工作流名称</span>
+                <input name="workflowName" type="text" value="直播老师权限同步" />
+              </label>
+              <label>
+                <span>业务目标</span>
+                <textarea name="goal" rows="3">根据老师信息找到准确账号并执行权限同步</textarea>
+              </label>
+              <div class="tag-editor">
+                <div class="tag-header">
+                  <span>输入参数</span>
+                  <button type="button" class="mini-button" id="add-input-tag">新增参数</button>
+                </div>
+                <div class="tag-list" id="input-tags"></div>
+                <input id="input-tag-entry" type="text" placeholder="输入后回车，例如：老师姓名" />
+              </div>
+              <label>
+                <span>业务判断规则</span>
+                <textarea name="rules" rows="4">零条停止、多条校准、无法唯一匹配则停止</textarea>
+              </label>
+              <label>
+                <span>成功标准</span>
+                <textarea name="successCriteria" rows="3">出现明确同步成功提示</textarea>
+              </label>
+              <label>
+                <span>人工介入策略</span>
+                <input name="manualPolicy" type="text" value="默认不允许" />
+              </label>
+              <label>
+                <span>运行模式</span>
+                <input name="runMode" type="text" value="Headless，从登录开始全自动" />
+              </label>
+              <label>
+                <span>输出结果</span>
+                <textarea name="output" rows="3">成功名单、失败名单、失败原因、日志</textarea>
+              </label>
+              <label>
+                <span>额外限制</span>
+                <textarea name="extraLimits" rows="2">不得新增扫码、不得默认第一条</textarea>
+              </label>
+              <label>
+                <span>录制代码</span>
+                <textarea name="recordedCode" rows="10">await page.goto('https://edu-admin.qlchat.com/login?...');
+await page.getByRole('img').click();
+await page.getByRole('button', { name: '同意协议（4s）' }).click();
+await page.goto('https://login.work.weixin.qq.com/...');
+await page.getByRole('link', { name: '继续在浏览器中登录访问' }).click();</textarea>
+              </label>
+              <div class="form-actions">
+                <button type="button" class="primary-button" id="generate-prompt">生成 Agent 输入</button>
+                <button type="button" class="ghost-button" id="reset-prompt">恢复默认</button>
+              </div>
+              <p class="form-feedback" id="prompt-feedback" aria-live="polite"></p>
+            </form>
+
+            <div class="prompt-output-card">
+              <div class="output-toolbar">
+                <div>
+                  <p class="eyebrow">交付给 Agent</p>
+                  <h3>生成后的 Prompt</h3>
+                </div>
+                <button type="button" class="copy-button" id="copy-generated-prompt">复制 Prompt</button>
+              </div>
+              <pre id="generated-prompt" class="prompt-preview"></pre>
+              <div class="agent-proof">
+                <span>测试要求</span>
+                <p>告诉 Agent：先给方案，再编码，再实际运行验证。不能只交代码。</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="stage-section training-section" id="skill-pack" data-section="skill-pack">
+          <div class="stage-heading reveal">
+            <div class="section-badge">06</div>
+            <p class="eyebrow">06 · 封装成 Skill 并安装</p>
+            <h2>脚本跑通了？打包成 Skill，让所有人都能用。</h2>
+            <p>Skill 就是一个包含脚本、Prompt 和说明文档的文件夹。封装好之后，团队里任何人都可以安装到自己的智能体上，用自然语言直接调用。下面选择你团队用的智能体平台，查看对应的安装方式。</p>
+          </div>
+
+          <div class="interactive-panel" data-switcher>
+            <div class="selector-grid three" role="tablist" aria-label="Skill 承载智能体">
+              <button type="button" class="selector-card is-active" data-switch-target="openclaw">
+                <img class="selector-icon" src="img/openclaw.svg" alt="OpenClaw logo" width="40" height="40">
+                <span>OpenClaw</span>
+              </button>
+              <button type="button" class="selector-card" data-switch-target="hermes">
+                <img class="selector-icon" src="img/hermes-agent.png" alt="Hermes logo" width="40" height="40">
+                <span>Hermes</span>
+              </button>
+              <button type="button" class="selector-card" data-switch-target="workbuddy">
+                <img class="selector-icon" src="img/workbuddy.svg" alt="Work Buddy logo" width="40" height="40">
+                <span>Work Buddy</span>
+              </button>
+            </div>
+            <div class="switch-panels keynote-switch-panels">
+              <article class="switch-panel is-active" data-switch-panel="openclaw">
+                <div class="panel-header-with-icon">
+                  <img class="panel-icon" src="img/openclaw.svg" alt="OpenClaw logo" width="48" height="48">
+                  <strong>OpenClaw</strong>
+                </div>
+                <p>开源的本地 AI 助手，支持 Shell 命令、文件管理和浏览器控制。适合通用 Agent 工作流——把脚本和说明整理成 Skill 后，任何 OpenClaw 用户都能直接安装复用。</p>
+                <p><a href="https://github.com/openclaw/openclaw" target="_blank" rel="noopener" style="color: var(--color-primary); font-weight: 600;">GitHub 官方仓库 →</a></p>
+              </article>
+              <article class="switch-panel" data-switch-panel="hermes">
+                <div class="panel-header-with-icon">
+                  <img class="panel-icon" src="img/hermes-agent.png" alt="Hermes logo" width="48" height="48">
+                  <strong>Hermes</strong>
+                </div>
+                <p>NousResearch 推出的自主 AI 智能体，擅长消息驱动和自动触发场景。特别适合来自企业微信、飞书等业务入口的自动化流程。</p>
+                <p><a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener" style="color: var(--color-primary); font-weight: 600;">Hermes Agent 官网 →</a></p>
+              </article>
+              <article class="switch-panel" data-switch-panel="workbuddy">
+                <div class="panel-header-with-icon">
+                  <img class="panel-icon" src="img/workbuddy.svg" alt="Work Buddy logo" width="48" height="48">
+                  <strong>Work Buddy</strong>
+                </div>
+                <p>腾讯推出的 AI 办公智能体桌面工作台，支持自然语言驱动的多模态任务交付。适合团队日常协作——成员直接说业务意图，不需要懂技术细节。</p>
+                <p><a href="https://www.workbuddy.cn/" target="_blank" rel="noopener" style="color: var(--color-primary); font-weight: 600;">Work Buddy 官网 →</a></p>
+              </article>
+            </div>
+          </div>
+
+          <div class="delivery-grid reveal">
+            <article class="feature-card keynote-feature">
+              <h3>最小 Skill 目录结构</h3>
+              <div class="code-block compact">
+                <div class="code-toolbar">
+                  <span>示例结构</span>
+                  <button type="button" class="copy-button" data-copy-target="skill-structure">复制</button>
+                </div>
+                <pre id="skill-structure"><code>my-workflow-skill/
+├── SKILL.md
+├── examples/
+│   ├── recorded-workflow.ts
+│   └── optimized-workflow.ts
+├── prompts/
+│   └── agent-prompt.md
+└── README.md</code></pre>
+              </div>
+            </article>
+
+            <article class="feature-card keynote-feature">
+              <h3>Skill 里至少要写清楚</h3>
+              <ul class="clean-list">
+                <li>这个 Skill 解决什么业务问题。</li>
+                <li>输入参数是什么。</li>
+                <li>哪些录制步骤是流程事实，绝不能改。</li>
+                <li>成功标准是什么。</li>
+                <li>失败时如何处理，如何持续调优。</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="stage-section training-section" id="runflow" data-section="runflow">
+          <div class="stage-heading reveal">
+            <div class="section-badge">07</div>
+            <p class=”eyebrow”>07 · 真实运行验证</p>
+            <h2>最后一步：让 Agent 真的跑一遍。</h2>
+            <p>代码写完不算完——你需要让 Agent 在真实环境里执行一次完整流程，亲眼看到成功结果。下面是验证时要逐项确认的检查清单。</p>
+          </div>
+
+          <div class="review-layout">
+            <div class="review-rules">
+              <article class="feature-card keynote-feature">
+                <h3>上线前审核清单</h3>
+                <div class="checklist" id="review-checklist">
+                  <label><input type="checkbox" name="preserveLoginFlow" /> 保留自动登录与协议确认，不得改成人工扫码</label>
+                  <label><input type="checkbox" name="noFirstResultAssumption" /> 禁止默认选择第一条搜索结果</label>
+                  <label><input type="checkbox" name="handleDuplicateNames" /> 必须处理重名校准，无法唯一匹配时停止</label>
+                  <label><input type="checkbox" name="verifySuccessSignal" /> 必须验证明确的同步成功提示</label>
+                </div>
+                <div class="review-summary" id="review-summary" aria-live="polite"></div>
+              </article>
+            </div>
+
+            <div class="review-checklist-card keynote-status-card">
+              <div class="status-board-header">
+                <div>
+                  <p class="eyebrow">流程跑通看板</p>
+                  <h3>让 Agent 真实执行一遍</h3>
+                </div>
+                <button type="button" class="ghost-button" id="reset-test-status">重置</button>
+              </div>
+              <div class="test-grid" id="test-grid">
+                <article class="test-card" data-test-key="login">
+                  <strong>登录链路</strong>
+                  <p>能否完整进入目标业务后台。</p>
+                  <div class="status-actions">
+                    <button type="button" data-status="pending">未测</button>
+                    <button type="button" data-status="passed">通过</button>
+                    <button type="button" data-status="failed">失败</button>
+                  </div>
+                </article>
+                <article class="test-card" data-test-key="query">
+                  <strong>查询命中</strong>
+                  <p>是否准确命中目标数据。</p>
+                  <div class="status-actions">
+                    <button type="button" data-status="pending">未测</button>
+                    <button type="button" data-status="passed">通过</button>
+                    <button type="button" data-status="failed">失败</button>
+                  </div>
+                </article>
+                <article class="test-card" data-test-key="dryrun">
+                  <strong>Dry Run</strong>
+                  <p>是否能在不落库的情况下验证完整流程。</p>
+                  <div class="status-actions">
+                    <button type="button" data-status="pending">未测</button>
+                    <button type="button" data-status="passed">通过</button>
+                    <button type="button" data-status="failed">失败</button>
+                  </div>
+                </article>
+                <article class="test-card" data-test-key="single">
+                  <strong>单次真实执行</strong>
+                  <p>是否出现明确成功信号。</p>
+                  <div class="status-actions">
+                    <button type="button" data-status="pending">未测</button>
+                    <button type="button" data-status="passed">通过</button>
+                    <button type="button" data-status="failed">失败</button>
+                  </div>
+                </article>
+                <article class="test-card" data-test-key="batch">
+                  <strong>后续调优</strong>
+                  <p>出现问题后，直接指出并继续让 Agent 迭代。</p>
+                  <div class="status-actions">
+                    <button type="button" data-status="pending">未测</button>
+                    <button type="button" data-status="passed">通过</button>
+                    <button type="button" data-status="failed">失败</button>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <div class="final-cta reveal">
+            <div>
+              <p class=”eyebrow”>恭喜你走完全流程</p>
+              <h3>以后遇到重复性操作，就用这套方法。</h3>
+              <p>录一遍操作 → 填表生成 Prompt → 交给 Agent → 封成 Skill。每做一次，团队就多一个可复用的自动化能力。遇到新问题不需要从零开始，直接在已有 Skill 上迭代就行。</p>
+            </div>
+            <div class="footer-actions">
+              <button class="ghost-button" type="button" data-scroll-target="#top">回到顶部</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="stage-section training-section" id="mistakes" data-section="mistakes">
+          <div class="stage-heading reveal">
+            <p class="eyebrow">常见误区</p>
+            <h2>这些坑，几乎每个团队都踩过。</h2>
+            <p>下面三组对比是最常见的错误做法和正确做法，建议收藏备查。</p>
+          </div>
+
+          <div class="mistakes-grid reveal">
+            <article class="mistake-card">
+              <span class="mistake-label bad">误区</span>
+              <strong>录制完就直接上线</strong>
+              <p>录制代码只是流程事实，没有参数化、异常处理和校验逻辑，直接用会在第一次异常时彻底卡死。</p>
+            </article>
+            <article class="mistake-card">
+              <span class="mistake-label good">正解</span>
+              <strong>录制 → Agent 工程化 → 人审核</strong>
+              <p>让 Agent 补充参数化、唯一性校验和异常阻断后，再由人确认业务规则是否完整。</p>
+            </article>
+            <article class="mistake-card">
+              <span class="mistake-label bad">误区</span>
+              <strong>让 Agent 自己发挥</strong>
+              <p>不给录制代码和业务规则，只说”帮我做自动化”，Agent 会自行脑补流程，结果不可预测。</p>
+            </article>
+            <article class="mistake-card">
+              <span class="mistake-label good">正解</span>
+              <strong>事实 + 规则 + 限制，缺一不可</strong>
+              <p>录制代码是事实，业务判断规则是约束，禁止事项是底线——三者一起交给 Agent 才有好结果。</p>
+            </article>
+            <article class="mistake-card">
+              <span class="mistake-label bad">误区</span>
+              <strong>脚本跑通就结束</strong>
+              <p>跑通一次不代表可复用。没有封装成 Skill，下次换个人、换个场景又要从零开始。</p>
+            </article>
+            <article class="mistake-card">
+              <span class="mistake-label good">正解</span>
+              <strong>跑通后立刻封装 Skill</strong>
+              <p>把成功的脚本、Prompt 和说明文档整理进 Skill 目录，让团队任何人都能一键复用。</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="stage-section training-section" id="tips" data-section="tips">
+          <div class="stage-heading reveal">
+            <p class="eyebrow">实用技巧</p>
+            <h2>做过的人总结出的 6 条经验。</h2>
+          </div>
+
+          <div class="tips-grid reveal">
+            <article class="tip-card">
+              <div class="tip-icon">1</div>
+              <h3>录制前先跑一遍</h3>
+              <p>在开始 Playwright 录制前，手动把完整流程跑一遍，确保自己真的清楚每一步。</p>
+            </article>
+            <article class="tip-card">
+              <div class="tip-icon">2</div>
+              <h3>一次只录一个流程</h3>
+              <p>不要在一次录制里塞多个业务流程，保持每段录制职责单一，后续维护更轻松。</p>
+            </article>
+            <article class="tip-card">
+              <div class="tip-icon">3</div>
+              <h3>用真实数据测试</h3>
+              <p>测试时使用贴近真实环境的数据，避免用”test123”这类假数据掩盖潜在问题。</p>
+            </article>
+            <article class="tip-card">
+              <div class="tip-icon">4</div>
+              <h3>Prompt 要写禁止项</h3>
+              <p>告诉 Agent 不能做什么比告诉它该做什么更重要——禁止扫码、禁止默认第一条。</p>
+            </article>
+            <article class="tip-card">
+              <div class="tip-icon">5</div>
+              <h3>先方案再编码</h3>
+              <p>在 Prompt 末尾加上”先输出设计方案，不要直接编码”，避免 Agent 一上来就写错方向。</p>
+            </article>
+            <article class="tip-card">
+              <div class="tip-icon">6</div>
+              <h3>持续迭代 Skill</h3>
+              <p>Skill 不是一次性产物。遇到新的边界场景，直接指出问题让 Agent 继续优化。</p>
+            </article>
+          </div>
+
+          <div class="faq-list reveal">
+            <h3 style="margin: 28px 0 0; font-size: 1.6rem; color: var(--color-ink);">常见问题</h3>
+            <article class="faq-item">
+              <button class="faq-question" type="button">我不会写代码，能用这套方法吗？</button>
+              <div class="faq-answer">
+                <p>完全可以。录制不需要写代码，Playwright 会自动生成代码。后续的工程化由 Agent 完成，你只需要在 Prompt 里写清楚业务规则和限制即可。封装 Skill 的步骤也有模板，照着填写就行。</p>
+              </div>
+            </article>
+            <article class="faq-item">
+              <button class="faq-question" type="button">录制的代码和 Agent 生成的代码冲突怎么办？</button>
+              <div class="faq-answer">
+                <p>核心原则是：录制代码是已验证的事实，Agent 只能在此基础上增强，不能改变流程事实。如果 Agent 把自动登录改成了扫码，或者把搜索逻辑改了，那就是 Agent 犯了错，需要在 Prompt 里明确禁止这些行为。</p>
+              </div>
+            </article>
+            <article class="faq-item">
+              <button class="faq-question" type="button">Skill 封装后怎么分享给团队？</button>
+              <div class="faq-answer">
+                <p>把 Skill 目录放到团队共享的代码仓库或内部工具平台即可。不同的智能体平台（OpenClaw、Hermes、Work Buddy）有各自的安装方式，但核心都是指定 Skill 目录路径。团队成员安装后，直接用自然语言调用即可。</p>
+              </div>
+            </article>
+            <article class="faq-item">
+              <button class="faq-question" type="button">一个 Skill 能处理多少种场景？</button>
+              <div class="faq-answer">
+                <p>建议一个 Skill 只解决一个明确的业务问题。如果场景差异大（比如不同系统的权限同步），拆成多个 Skill 更好维护。可以通过参数化来覆盖同一流程的不同输入情况。</p>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <strong>Playwright × Agent 培训</strong>
+            <p>从录制真实工作流到封装可复用 Skill，帮助团队建立持续积累的自动化能力。</p>
+          </div>
+          <div class="footer-col">
+            <h4>快速跳转</h4>
+            <ul>
+              <li><a href="#why">背景与原理</a></li>
+              <li><a href="#prepare">开始前准备</a></li>
+              <li><a href="#install">安装步骤</a></li>
+              <li><a href="#recording">录制实操</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>进阶内容</h4>
+            <ul>
+              <li><a href="#agent-build">Agent 脚本化</a></li>
+              <li><a href="#skill-pack">封装 Skill</a></li>
+              <li><a href="#runflow">跑通流程</a></li>
+              <li><a href="#mistakes">常见误区</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>相关资源</h4>
+            <ul>
+              <li><a href="https://playwright.dev/" target="_blank" rel="noopener">Playwright 官方文档</a></li>
+              <li><a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js 下载</a></li>
+              <li><a href="https://github.com/openclaw/openclaw" target="_blank" rel="noopener">OpenClaw GitHub</a></li>
+              <li><a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener">Hermes Agent 官网</a></li>
+              <li><a href="https://www.workbuddy.cn/" target="_blank" rel="noopener">Work Buddy 官网</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>Playwright × Agent 自动化培训教程</span>
+          <button class="ghost-button" type="button" id="clear-local-data">清除本地数据</button>
+        </div>
+      </footer>
+    </div>
+
+    <div class="floating-tools" aria-label="快捷操作">
+      <button class="floating-button" type="button" data-scroll-target="#top" aria-label="返回顶部">↑</button>
+      <button class="floating-button wide" type="button" id="floating-copy-prompt">复制当前 Prompt</button>
+    </div>
+  </body>
+</html>

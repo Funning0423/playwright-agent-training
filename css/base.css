@@ -1,0 +1,127 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background:
+    radial-gradient(circle at top right, rgba(37, 104, 196, 0.06), transparent 20%),
+    linear-gradient(180deg, #fbfbfd, var(--color-bg-page));
+  color: var(--color-text);
+  line-height: 1.7;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+code,
+pre {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+
+pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.site-shell {
+  padding: 24px;
+}
+
+.layout {
+  width: min(100%, var(--max-content));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.content {
+  width: min(100%, var(--content-width));
+  display: grid;
+  gap: 32px;
+}
+
+.training-section {
+  position: relative;
+  scroll-margin-top: 100px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.section-heading h2,
+.section-heading h3,
+.hero-copy h1 {
+  margin: 0;
+  color: var(--color-ink);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.hero-copy h1 {
+  font-size: clamp(3rem, 6vw, 5.1rem);
+}
+
+.section-heading h2 {
+  font-size: clamp(2rem, 3.6vw, 3.2rem);
+}
+
+.section-heading h3 {
+  font-size: 1.65rem;
+}
+
+.section-heading p,
+.hero-lead,
+.rail-card p,
+.feature-card p,
+.callout-card p,
+.timeline-card p {
+  color: var(--color-muted-soft);
+}
+
+.clean-list {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.clean-list li + li {
+  margin-top: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

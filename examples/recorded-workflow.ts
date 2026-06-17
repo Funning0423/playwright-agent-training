@@ -1,0 +1,10 @@
+await page.goto("https://edu-admin.qlchat.com/login?...");
+await page.getByRole("img").click();
+await page.getByRole("button", { name: "同意协议（4s）" }).click();
+await page.goto("https://login.work.weixin.qq.com/...");
+await page.getByRole("link", { name: "继续在浏览器中登录访问" }).click();
+await page.goto("https://edu-admin.qlchat.com/teacherSetting/liveTeacher");
+await page.getByRole("textbox", { name: "用户昵称" }).fill("杨继昆");
+await page.getByRole("button", { name: "查询" }).click();
+await page.getByRole("button", { name: "修改" }).click();
+await page.getByRole("button", { name: "同步" }).click();

@@ -1,0 +1,43 @@
+:root {
+  --color-primary: #2568c4;
+  --color-primary-dark: #163a63;
+  --color-success: #218a4b;
+  --color-success-soft: #e8f5ed;
+  --color-warning: #b26a00;
+  --color-warning-soft: #fff4dd;
+  --color-danger: #b3261e;
+  --color-danger-soft: #fdeceb;
+  --color-bg: #f6f8fb;
+  --color-bg-page: #f5f5f7;
+  --color-bg-strong: #edf2f8;
+  --color-surface: #ffffff;
+  --color-surface-dark: #0f2239;
+  --color-text: #243142;
+  --color-muted: #627086;
+  --color-muted-soft: #6e6e73;
+  --color-line: #dde5f0;
+  --color-ink: #081624;
+  --shadow-card: 0 24px 60px rgba(17, 42, 78, 0.08), 0 2px 12px rgba(17, 42, 78, 0.04);
+  --shadow-soft: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 0 0 1px rgba(9, 30, 66, 0.08);
+  --radius-card: 18px;
+  --radius-pill: 999px;
+  --max-content: 1360px;
+  --sidebar-width: 248px;
+  --content-width: 980px;
+  --space-1: 8px;
+  --space-2: 12px;
+  --space-3: 16px;
+  --space-4: 20px;
+  --space-5: 28px;
+  --space-6: 36px;
+  --space-7: 48px;
+  --space-8: 72px;
+
+  --syntax-keyword: #c678dd;
+  --syntax-string: #98c379;
+  --syntax-fn: #61afef;
+  --syntax-comment: #5c6370;
+  --syntax-number: #d19a66;
+  --syntax-operator: #56b6c2;
+  --syntax-property: #e06c75;
+}
