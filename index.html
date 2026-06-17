@@ -56,8 +56,8 @@
             </div>
           </div>
 
-          <div class=”hero-stage-visual”>
-            <div class=”hero-signal-card”>
+          <div class="hero-stage-visual">
+            <div class="hero-signal-card">
               <span>核心思路</span>
               <strong>你录操作 → Agent 写脚本 → 封成 Skill → 团队复用</strong>
               <p>一次投入，长期受益。以后遇到同类需求，一句话就能调起自动化。</p>
@@ -85,17 +85,17 @@
           </div>
 
           <div class="reason-grid compact-grid reveal">
-            <article class=”spotlight-card”>
+            <article class="spotlight-card">
               <span>现在的困境</span>
               <strong>说不清，做不完</strong>
               <p>想自动化，但跟工程师描述需求时说不清流程细节、成功条件和异常情况，最后来回沟通效率极低。</p>
             </article>
-            <article class=”spotlight-card”>
+            <article class="spotlight-card">
               <span>这套方法怎么解决</span>
               <strong>你录操作，Agent 写代码</strong>
               <p>用 Playwright 把你平时的操作录下来——这就是最准确的需求文档。然后 Agent 在此基础上补充异常处理、参数化等工程逻辑。</p>
             </article>
-            <article class=”spotlight-card”>
+            <article class="spotlight-card">
               <span>最终效果</span>
               <strong>一次录制，长期复用</strong>
               <p>跑通后封成 Skill，以后团队里任何人都能用一句话触发，不需要重新录制或重新写脚本。</p>
@@ -259,40 +259,40 @@
           </div>
         </section>
 
-        <section class=”stage-section training-section” id=”recording” data-section=”recording”>
-          <div class=”stage-heading reveal”>
-            <div class=”section-badge”>04</div>
-            <p class=”eyebrow”>04 · 录制操作</p>
+        <section class="stage-section training-section" id="recording" data-section="recording">
+          <div class="stage-heading reveal">
+            <div class="section-badge">04</div>
+            <p class="eyebrow">04 · 录制操作</p>
             <h2>打开录制器，像平时一样操作就行。</h2>
             <p>Playwright 会在后台把你的每一步点击、输入、跳转都记录下来，自动生成代码。你不需要看懂这些代码——它们的作用是让 Agent 知道你做了什么。</p>
           </div>
 
-          <div class=”reason-grid compact-grid reveal”>
-            <article class=”spotlight-card”>
+          <div class="reason-grid compact-grid reveal">
+            <article class="spotlight-card">
               <span>第一步</span>
               <strong>启动录制器</strong>
               <p>打开终端，运行下面的命令。把网址换成你实际要操作的后台地址。</p>
-              <div class=”code-block compact”>
-                <div class=”code-toolbar”>
+              <div class="code-block compact">
+                <div class="code-toolbar">
                   <span>终端命令</span>
-                  <button type=”button” class=”copy-button” data-copy-target=”codegen-cmd”>复制</button>
+                  <button type="button" class="copy-button" data-copy-target="codegen-cmd">复制</button>
                 </div>
-                <pre id=”codegen-cmd”><code>npx playwright codegen https://edu-admin.qlchat.com</code></pre>
+                <pre id="codegen-cmd"><code>npx playwright codegen https://edu-admin.qlchat.com</code></pre>
               </div>
             </article>
-            <article class=”spotlight-card”>
+            <article class="spotlight-card">
               <span>第二步</span>
               <strong>按流程操作一遍</strong>
               <p>Playwright 会自动打开浏览器。从登录页开始，像平时工作一样操作一遍，所有点击、输入、跳转都会被自动记录。不用管代码好不好看，录制的目的是记录事实。</p>
             </article>
-            <article class=”spotlight-card”>
+            <article class="spotlight-card">
               <span>第三步</span>
               <strong>复制生成的代码</strong>
               <p>操作完成后，点录制面板上的”复制”按钮，把代码保存下来。录完建议回放一遍，确认没有遗漏关键步骤——这段代码后面要交给 Agent 使用。</p>
             </article>
           </div>
 
-          <div class=”tab-panel” data-tabs>
+          <div class="tab-panel" data-tabs>
             <div class="tab-list" role="tablist" aria-label="录制代码切换">
               <button type="button" role="tab" aria-selected="true" class="tab-button" data-tab-target="recorded">录制结果</button>
               <button type="button" role="tab" aria-selected="false" class="tab-button" data-tab-target="optimized">Agent 优化后</button>
@@ -340,10 +340,10 @@ await targetRow.getByRole('button', { name: '修改' }).click();
 await page.getByRole('button', { name: '同步' }).click();</code></pre>
                 </div>
               </section>
-              <section class=”tab-pane” role=”tabpanel” data-tab-panel=”reason”>
-                <article class=”explain-card keynote-explain”>
+              <section class="tab-pane" role="tabpanel" data-tab-panel="reason">
+                <article class="explain-card keynote-explain">
                   <h3>两段代码的核心区别</h3>
-                  <ul class=”clean-list”>
+                  <ul class="clean-list">
                     <li><strong>录制代码</strong>（左边）是你操作的原始记录，包括登录、点击、跳转——这些是不能改的流程事实。</li>
                     <li><strong>Agent 优化后</strong>（右边）在此基础上增加了：参数化输入、搜索结果唯一性校验、异常时自动阻断、成功后验证提示。</li>
                     <li><strong>底线</strong>：如果 Agent 把自动登录改成了手动扫码，或者默认选了第一条搜索结果——这不是”优化”，而是错误，需要在 Prompt 里明确禁止。</li>
@@ -522,7 +522,7 @@ await page.getByRole('link', { name: '继续在浏览器中登录访问' }).clic
         <section class="stage-section training-section" id="runflow" data-section="runflow">
           <div class="stage-heading reveal">
             <div class="section-badge">07</div>
-            <p class=”eyebrow”>07 · 真实运行验证</p>
+            <p class="eyebrow">07 · 真实运行验证</p>
             <h2>最后一步：让 Agent 真的跑一遍。</h2>
             <p>代码写完不算完——你需要让 Agent 在真实环境里执行一次完整流程，亲眼看到成功结果。下面是验证时要逐项确认的检查清单。</p>
           </div>
@@ -601,7 +601,7 @@ await page.getByRole('link', { name: '继续在浏览器中登录访问' }).clic
 
           <div class="final-cta reveal">
             <div>
-              <p class=”eyebrow”>恭喜你走完全流程</p>
+              <p class="eyebrow">恭喜你走完全流程</p>
               <h3>以后遇到重复性操作，就用这套方法。</h3>
               <p>录一遍操作 → 填表生成 Prompt → 交给 Agent → 封成 Skill。每做一次，团队就多一个可复用的自动化能力。遇到新问题不需要从零开始，直接在已有 Skill 上迭代就行。</p>
             </div>
