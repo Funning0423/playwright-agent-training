@@ -260,26 +260,19 @@
         </section>
 
         <section class="stage-section featured-section training-section" id="recording" data-section="recording">
-          <div class="stage-heading reveal">
-            <div class="section-badge">04</div>
+          <div class=”stage-heading reveal”>
+            <div class=”section-badge”>04</div>
             <p class=”eyebrow”>04 · 录制操作</p>
-            <h2>打开录制器，像平时一样操作就行。</h2>
-            <p>Playwright 会在后台把你的每一步点击、输入、跳转都记录下来，自动生成代码。你不需要看懂这些代码——它们的作用是让 Agent 知道你做了什么。</p>
-          </div>
-
-          <div class=”recording-howto reveal”>
-            <article class=”feature-card keynote-feature”>
-              <h3>怎么开始录制？</h3>
-              <p>打开终端（macOS 用”终端”，Windows 用 PowerShell），输入下面的命令。Playwright 会自动打开一个浏览器窗口并进入你指定的网址，同时弹出一个录制面板。你只需要像平时工作一样操作一遍，所有点击、输入、跳转都会被自动记录成代码。</p>
-              <div class=”code-block compact”>
-                <div class=”code-toolbar”>
-                  <span>启动录制器</span>
-                  <button type=”button” class=”copy-button” data-copy-target=”codegen-cmd”>复制</button>
-                </div>
-                <pre id=”codegen-cmd”><code>npx playwright codegen https://你要录制的网址.com</code></pre>
+            <h2>打开终端，一行命令启动录制。</h2>
+            <p>在终端里运行下面的命令，Playwright 会自动打开浏览器并弹出录制面板。你只需要像平时一样操作，所有点击、输入、跳转都会被自动记录成代码——不需要看懂，后面交给 Agent 处理。</p>
+            <div class=”code-block compact” style=”margin-top: 20px;”>
+              <div class=”code-toolbar”>
+                <span>启动录制器</span>
+                <button type=”button” class=”copy-button” data-copy-target=”codegen-cmd”>复制</button>
               </div>
-              <p style=”margin-top: 12px; color: var(--color-muted-soft); font-size: 14px;”>把 <code>https://你要录制的网址.com</code> 换成你实际要操作的后台地址，比如 <code>https://edu-admin.qlchat.com</code>。录制完成后，点击录制面板上的”复制”按钮，把生成的代码保存下来——后面要交给 Agent 使用。</p>
-            </article>
+              <pre id=”codegen-cmd”><code>npx playwright codegen https://edu-admin.qlchat.com</code></pre>
+            </div>
+            <p style=”margin-top: 10px; color: var(--color-muted-soft); font-size: 14px;”>把网址换成你实际要操作的后台地址。录完后点录制面板上的”复制”，保存生成的代码。</p>
           </div>
 
           <div class=”video-stage reveal”>
@@ -295,7 +288,6 @@
                 <li><strong>不用管代码好不好看</strong>——录制的目的是记录事实，代码质量后面由 Agent 提升。</li>
                 <li><strong>录完先看一遍回放</strong>——确认没有遗漏关键步骤。</li>
               </ul>
-              <p class=”helper-note”>把你的演示视频放到 `assets/` 目录下，左边的播放器就能直接播放。</p>
             </aside>
           </div>
 
