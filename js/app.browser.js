@@ -558,7 +558,7 @@ ${draft.successCriteria}
     document.querySelectorAll(".code-block pre code").forEach((block) => {
       let html = block.innerHTML;
 
-      html = html.replace(/(\/\/[^\n]*)/g, '<span class="syntax-cm">$1</span>');
+      html = html.replace(/(?<!:)(\/\/[^\n]*)/g, '<span class="syntax-cm">$1</span>');
 
       html = html.replace(/('(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*"|`(?:[^`\\]|\\.)*`)/g, '<span class="syntax-str">$1</span>');
 
